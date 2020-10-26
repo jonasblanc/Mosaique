@@ -1,6 +1,8 @@
 # Mosaique
 Mosaique is a tool to transform an given image into a mosaique constitued of smaller images. There is still room for improvement in color comparaison. 
 
+<img height="300" src="https://user-images.githubusercontent.com/44334351/97181737-e8eabe00-179b-11eb-8ee7-87fa7a8b9f6f.jpeg" > <img height="300" alt="CloseLook" src="https://user-images.githubusercontent.com/44334351/97182591-05d3c100-179d-11eb-938f-af0cecb730b1.png">
+
 ## Technologies
 You will need java and [Jsoup](https://jsoup.org) to be able to fully run this project. (Jsoup is needed to download images from google image as explained below).
 
