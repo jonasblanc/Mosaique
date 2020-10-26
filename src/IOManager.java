@@ -59,12 +59,19 @@ public final class IOManager {
 			index++;
 		}
 
-		if (contents.length - index > 1) {
-			System.out.println("More than one file in big");
+		int count = 0;
+		for (int i = 0; i < contents.length; i++) {
+			if (contents[i].startsWith(".")) {
+				count++;
+			}
 		}
 
-		if (contents.length - index < 1) {
-			System.err.println("Please put a photo in big");
+		if (contents.length - count > 1) {
+			System.out.println("More than one file in " + pathToDirectory);
+		}
+
+		if (contents.length - count < 1) {
+			System.err.println("A file is needed in "+ pathToDirectory);
 		}
 
 		System.out.println("Trying to load: " + contents[index]);
@@ -171,6 +178,9 @@ public final class IOManager {
 		String contents[] = directoryPath.list();
 
 		for (int i = 0; i < contents.length; i++) {
+			if (contents[i].startsWith(".")) {
+				continue;
+			}
 			File file = new File(pathToDirectory + "/" + contents[i]);
 			file.delete();
 		}
