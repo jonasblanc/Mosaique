@@ -5,36 +5,43 @@ import java.util.Random;
 
 public final class Main {
 
+	// Available color comparaison methods for you to try
 	private static enum TYPES {
 		RGB, RGB_RDM, LAB, MONOCHROME
 	};
 
-	private static final String SEARCH_TERM = "landscape";
+	// =================== Play with this variables ===================//
 	private static final TYPES TYPE = TYPES.RGB_RDM;
-
-	private static final String TEMP_DIR_PATH = "images/temp";
-	private static final String COMPONENT_DIR_PATH = "images/download";
-	private static final String MAIN_IMAGE_DIR_PATH = "images/input/big";
-	private static final String RESULT_DIR_PATH = "images/output/final";
-	private static final String COMP_DIR_PATH = "images/output/comparaison";
-
-	private static final String DOWNLOAD_DIR_PATH = "images/download";
-
-	private static final String MEANS_FILENAME = "means.txt";
-	private static final String RESULT_NAME = "final";
-	private static final String COMP_NAME = "comp";
-
+	private static final String SEARCH_TERM = "landscape";
+	private static final boolean DO_YOU_PROVIDE_IMAGES = true;
 	private static final int NUMBER_COMPONENT_X = 70;
 	private static final int NUMBER_COMPONENT_Y = 70;
 	private static final int SCALE_FACTOR_COMPONENT = 22;
+	// =================== Play with this variables ===================//
 
+	// =================== Results settings ===================//
+	private static final String RESULT_DIR_PATH = "images/output/final";
+	private static final String RESULT_NAME = "final";
+	private static final String COMP_DIR_PATH = "images/output/comparaison";
+	private static final String COMP_NAME = "comp";
+	// =================== Results settings ===================//
+
+	// =================== Do not modifiy ===================//
+	private static final String COMPONENT_DIR_PATH = DO_YOU_PROVIDE_IMAGES ? "images/input/smalls" : "images/download";
+	private static final String MAIN_IMAGE_DIR_PATH = "images/input/big";
 	private static final int THREESHOLD = 1000000;
+	private static final String TEMP_DIR_PATH = "images/temp";
+	private static final String DOWNLOAD_DIR_PATH = "images/download";
+	private static final String MEANS_FILENAME = "means.txt";
+	// =================== Do not modifiy ===================//
 
 	public static void main(String[] args) throws IOException {
 
 		// Download image library
-		IOManager.cleanDirectory(DOWNLOAD_DIR_PATH);
-		ImageDownloader.downloadFromGoogleImage(SEARCH_TERM, DOWNLOAD_DIR_PATH);
+		if (!DO_YOU_PROVIDE_IMAGES) {
+			IOManager.cleanDirectory(DOWNLOAD_DIR_PATH);
+			ImageDownloader.downloadFromGoogleImage(SEARCH_TERM, DOWNLOAD_DIR_PATH);
+		}
 
 		// Preprocess image
 		BufferedImage original = IOManager.loadSingleImageFromDirectory(MAIN_IMAGE_DIR_PATH);
