@@ -11,9 +11,9 @@ public final class Main {
 	};
 
 	// =================== Play with this variables ===================//
-	private static final TYPES TYPE = TYPES.RGB_RDM;
+	private static final TYPES COLOR_COMPARAISON_TYPE = TYPES.RGB_RDM;
 	private static final String SEARCH_TERM = "landscape";
-	private static final boolean DO_YOU_PROVIDE_IMAGES = true;
+	private static final boolean DO_YOU_PROVIDE_IMAGES = false;
 	private static final int NUMBER_COMPONENT_X = 70;
 	private static final int NUMBER_COMPONENT_Y = 70;
 	private static final int SCALE_FACTOR_COMPONENT = 22;
@@ -50,10 +50,10 @@ public final class Main {
 		// Preprocess components
 		int sizeComponentX = SCALE_FACTOR_COMPONENT * original.getWidth() / NUMBER_COMPONENT_X;
 		int sizeComponentY = SCALE_FACTOR_COMPONENT * original.getHeight() / NUMBER_COMPONENT_Y;
-		preprocessImages(COMPONENT_DIR_PATH, TEMP_DIR_PATH, sizeComponentX, sizeComponentY, TYPE);
+		preprocessImages(COMPONENT_DIR_PATH, TEMP_DIR_PATH, sizeComponentX, sizeComponentY, COLOR_COMPARAISON_TYPE);
 
 		// Build result
-		BufferedImage result = buildResult(original, TEMP_DIR_PATH, RESULT_DIR_PATH, RESULT_NAME, TYPE);
+		BufferedImage result = buildResult(original, TEMP_DIR_PATH, RESULT_DIR_PATH, RESULT_NAME, COLOR_COMPARAISON_TYPE);
 
 		// Build comparaison
 		buildComp(original, result, COMP_DIR_PATH, COMP_NAME);
@@ -121,7 +121,7 @@ public final class Main {
 
 		ImageConcatener imgConCat = new ImageConcatener(sizeComponentX, sizeComponentY, NUMBER_COMPONENT_X, NUMBER_COMPONENT_Y);
 
-		if (TYPE == TYPES.MONOCHROME) {
+		if (type == TYPES.MONOCHROME) {
 			image = ImageProcessing.toMonochrome(image);
 		}
 
